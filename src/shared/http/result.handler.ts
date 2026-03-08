@@ -1,13 +1,8 @@
 import type { Response } from 'express';
-
-type ControllerResult = {
-  statusCode?: number;
-  message: string;
-  data?: unknown;
-};
+import type { HttpResult } from './http.types.js';
 
 class ResultHandler {
-  public send(res: Response, result: ControllerResult) {
+  public send(res: Response, result: HttpResult) {
     const { statusCode = 200, message, data } = result;
 
     res.set('Cache-Control', 'no-store');
@@ -22,4 +17,3 @@ class ResultHandler {
 const resultHandler = new ResultHandler();
 
 export { resultHandler };
-export type { ControllerResult };
